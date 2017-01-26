@@ -33,4 +33,7 @@ Installation
 
 .. code-block:: bash
 
-    pip install <>
+    pip install git+https://github.com/blockbuster/mpxapi.git
+
+It can also be added to requirements.txt as is. Note that it requires github credentials to install as it is currently
+in a private repos
