@@ -19,8 +19,19 @@ a URL and can be found on the "About" screen in the MPX console).
     params= {"schema": "2.15.0", "searchSchema": "1.3.0", "range": "-1", "pretty": "true"}
     req = api.command(service="Entertainment Data Service", path="/data/Program", method="GET", params=params)
 
+Another option is to use premade models for some of the data services
+.. code-block:: python
 
-It is also possible to sign out nicely after usage
+    from mpxapi import MPXApi
+    from mpxapi.entertainment import Programs
+
+    api = MPXApi(username=username, password=password, account=account, tld="eu")
+    programs = Programs(api=api)
+
+    programs.get({"range"; "-1"})
+
+
+To sign out after using the API (thereby invalidating the token)
 
 .. code-block:: python
 

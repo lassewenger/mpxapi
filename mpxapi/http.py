@@ -45,6 +45,7 @@ class MPXApi:
         params.update({"token": self.token})
         if not "form" in params:
             params.update({"form": "cjson"})
+            params.update({"pretty": "true"})
 
         req = requests.request(method, url, params=params, data=data)
 
