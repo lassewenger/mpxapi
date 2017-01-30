@@ -19,7 +19,9 @@ a URL and can be found on the "About" screen in the MPX console).
     params= {"schema": "2.15.0", "searchSchema": "1.3.0", "range": "-1", "pretty": "true"}
     req = api.command(service="Entertainment Data Service", path="/data/Program", method="GET", params=params)
 
+
 Another option is to use premade models for some of the data services
+
 .. code-block:: python
 
     from mpxapi import MPXApi
