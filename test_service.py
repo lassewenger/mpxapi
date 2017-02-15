@@ -1,6 +1,6 @@
 import os, logging, time
 from mpxapi import MPXApi
-from mpxapi.entertainment import Programs
+from mpxapi.entertainment import Program
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -9,9 +9,9 @@ password = os.environ['MPX_PASSWORD']
 account = os.environ['MPX_ACCOUNT']
 
 api = MPXApi(username=username, password=password, account=account, tld="eu")
-programs = Programs(api=api)
+program = Program(api=api)
 
-req = programs.get({"range": "-1", "fields": "id,title"})
+req = program.get({"range": "-1", "fields": "id,title"})
 print(req.text)
 
 api.sign_out()

@@ -1,1 +1,2 @@
-from .programs import Programs
+from .program import Program
+from .feed_config import FeedConfig

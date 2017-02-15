@@ -21,7 +21,8 @@ class MPXApi:
         self.get_registry()
 
     def sign_in(self):
-        params = {'schema': '1.1', 'duration': '3600000', 'idleTimeout': '900000'}
+        # Ask for a default timeout of 1 hour, and 10 minutes of idle timeout
+        params = {'schema': '1.1', '_duration': '3600000', '_idleTimeout': '600000'}
         headers = {'Content-Type': 'application/json'}
         auth = HTTPBasicAuth(username=self.username, password=self.password)
         r = requests.get(SIGN_IN_URL.format(tld=self.tld), params=params,
@@ -37,7 +38,6 @@ class MPXApi:
         params = {'schema': '1.1', '_token': self.token}
         headers = {'Content-Type': 'application/json'}
         req = requests.get(SIGN_OUT_URL.format(tld=self.tld), params=params, headers=headers)
-        print(req.text)
 
     def get_registry(self):
         logging.debug("Fetching service registry from %s" % REGISTRY_URL.format(tld=self.tld))

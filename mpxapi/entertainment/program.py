@@ -1,4 +1,4 @@
-class Programs:
+class Program:
     def __init__(self, api):
         self.schema = "2.15.0"
         self.searchSchema = "1.3.0"
