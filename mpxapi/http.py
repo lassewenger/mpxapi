@@ -1,5 +1,6 @@
 from .exceptions import InvalidCredentialsException, InvalidServiceException
 import requests
+import logging
 from requests.auth import HTTPBasicAuth
 
 REGISTRY_URL = "https://access.auth.theplatform.{tld}/web/Registry/resolveDomain"
@@ -33,10 +34,15 @@ class MPXApi:
             raise InvalidCredentialsException('Unable to auth for user: ' + self.username)
 
     def sign_out(self):
-        self.raw_command(method="GET", url=SIGN_OUT_URL.format(tld=self.tld), params={"schema": "1.1"})
+        params = {'schema': '1.1', '_token': self.token}
+        headers = {'Content-Type': 'application/json'}
+        req = requests.get(SIGN_OUT_URL.format(tld=self.tld), params=params, headers=headers)
+        print(req.text)
 
     def get_registry(self):
-        params = {"schema": "1.1", "form": "json", "_accountId": "http://access.auth.theplatform.com/data/Account/" + self.account}
+        logging.debug("Fetching service registry from %s" % REGISTRY_URL.format(tld=self.tld))
+        params = {"schema": "1.1", "form": "json",
+                  "_accountId": "http://access.auth.theplatform.com/data/Account/" + self.account}
         registry_request = self.raw_command(method="GET", url=REGISTRY_URL.format(tld=self.tld), params=params)
         self.registry = registry_request.json()['resolveDomainResponse']
 
@@ -49,6 +55,12 @@ class MPXApi:
 
         req = requests.request(method, url, params=params, data=data)
 
+        # check if we maybe have an expired token
+        if "AuthenticationException" in req.text or "InvalidTokenException" in req.text:
+            logging.debug("We encountered an AuthenticationException or InvalidTokenException, re-signing in")
+            self.sign_in()
+            return self.raw_command(method, url, params, data)
+
         return req
 
     def command(self, service, path, method, params, data=None):
@@ -60,6 +72,3 @@ class MPXApi:
         url += path
 
         return self.raw_command(method=method, url=url, params=params, data=data)
-
-
-
