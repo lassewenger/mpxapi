@@ -7,7 +7,7 @@ class FeedConfig(ApiBase):
         self.service = "Feeds Data Service"
         self.path = "/data/FeedConfig"
 
-        super().__init__(api)
+        ApiBase.__init__(self, api)
 
     def apply_schema(self, params):
         params.update({"schema": self.schema})

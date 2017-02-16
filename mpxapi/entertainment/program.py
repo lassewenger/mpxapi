@@ -7,4 +7,4 @@ class Program(ApiBase):
         self.searchSchema = "1.3.0"
         self.service = "Entertainment Data Service"
         self.path = "/data/Program"
-        super().__init__(api)
+        ApiBase.__init__(self, api)
