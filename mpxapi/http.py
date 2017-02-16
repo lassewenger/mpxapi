@@ -37,7 +37,7 @@ class MPXApi:
     def sign_out(self):
         params = {'schema': '1.1', '_token': self.token}
         headers = {'Content-Type': 'application/json'}
-        req = requests.get(SIGN_OUT_URL.format(tld=self.tld), params=params, headers=headers)
+        requests.get(SIGN_OUT_URL.format(tld=self.tld), params=params, headers=headers)
 
     def get_registry(self):
         logging.debug("Fetching service registry from %s" % REGISTRY_URL.format(tld=self.tld))
@@ -49,7 +49,7 @@ class MPXApi:
     def raw_command(self, method, url, params, data=None):
         params.update({"account": self.account})
         params.update({"token": self.token})
-        if not "form" in params:
+        if "form" not in params:
             params.update({"form": "cjson"})
             params.update({"pretty": "true"})
 
@@ -64,7 +64,6 @@ class MPXApi:
         return req
 
     def command(self, service, path, method, params, data=None):
-        url = ""
         try:
             url = self.registry[service]
         except KeyError:

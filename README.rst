@@ -1,5 +1,5 @@
 MPX API Library
-============================
+===============
 
 Simple, low-level handling of the MPX API with built-in authentication functions. Handles authentication, and
 automatically supplies tokens on called commands.
