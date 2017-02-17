@@ -40,3 +40,9 @@ class ApiBase:
         if self.searchSchema:
             params.update({"searchSchema": self.searchSchema})
         return params
+
+    def get_service_url(self):
+        return self.api.get_service_url(self.service)
+
+    def get_endpoint_url(self):
+        return self.get_service_url() + self.path
