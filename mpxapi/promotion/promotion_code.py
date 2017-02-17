@@ -1,7 +1,7 @@
 from mpxapi.api_base import ApiBase
 
 
-class Promotion(ApiBase):
+class PromotionCode(ApiBase):
     def __init__(self, api):
         ApiBase.__init__(self, api)
 
