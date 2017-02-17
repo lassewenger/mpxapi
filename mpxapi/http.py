@@ -64,10 +64,11 @@ class MPXApi:
         return req
 
     def command(self, service, path, method, params, data=None):
+        url = self.get_service_url(service) + path
+        return self.raw_command(method=method, url=url, params=params, data=data)
+
+    def get_service_url(self, service):
         try:
-            url = self.registry[service]
+            return self.registry[service]
         except KeyError:
             raise InvalidServiceException("Service " + service + " could not be found")
-        url += path
-
-        return self.raw_command(method=method, url=url, params=params, data=data)
