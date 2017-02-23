@@ -46,3 +46,7 @@ class ApiBase:
 
     def get_endpoint_url(self):
         return self.get_service_url() + self.path
+
+
+def get_guid_based_id(endpoint, guid):
+    return "%s/guid/%s/%s" % (endpoint.get_endpoint_url(), endpoint.api.get_account(), guid)
