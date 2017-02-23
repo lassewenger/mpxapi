@@ -1,0 +1,1 @@
+from .rights import Rights
