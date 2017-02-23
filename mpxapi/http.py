@@ -69,7 +69,7 @@ class MPXApi:
 
     def get_service_url(self, service):
         try:
-            url = self.registry[service]
+            return self.registry[service]
         except KeyError:
             raise InvalidServiceException("Service " + service + " could not be found")
 
