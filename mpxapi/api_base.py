@@ -23,14 +23,14 @@ class ApiBase:
     def put(self, data, params=None):
         if not params:
             params = {}
-        return self.api.command(service=self.service, path=self.path + '/', method="PUT",
+        return self.api.command(service=self.service, path=self.path, method="PUT",
                                 params=self.apply_schema(params),
                                 data=json.dumps(data, sort_keys=True))
 
     def post(self, data, params=None):
         if not params:
             params = {}
-        return self.api.command(service=self.service, path=self.path + '/', method="POST",
+        return self.api.command(service=self.service, path=self.path, method="POST",
                                 params=self.apply_schema(params),
                                 data=json.dumps(data, sort_keys=True))
 
