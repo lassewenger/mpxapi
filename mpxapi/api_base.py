@@ -20,17 +20,22 @@ class ApiBase:
         return self.api.command(service=self.service, path=self.path + '/' + str(entity_id), method="GET",
                                 params=self.apply_schema(params))
 
-    def put(self, data, params=None):
+    def put(self, data, params=None, feed=False):
         if not params:
             params = {}
-        return self.api.command(service=self.service, path=self.path, method="PUT",
+        path = self.path
+        if feed:
+            path = self.path + '/feed'
+        return self.api.command(service=self.service, path=path, method="PUT",
                                 params=self.apply_schema(params),
                                 data=json.dumps(data, sort_keys=True))
 
-    def post(self, data, params=None):
+    def post(self, data, params=None, feed=False):
         if not params:
             params = {}
-        return self.api.command(service=self.service, path=self.path, method="POST",
+        if feed:
+            path = self.path + '/feed'
+        return self.api.command(service=self.service, path=path, method="POST",
                                 params=self.apply_schema(params),
                                 data=json.dumps(data, sort_keys=True))
 
