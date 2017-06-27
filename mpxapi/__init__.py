@@ -2,5 +2,5 @@ from .http import MPXApi
 from .api_base import get_guid_based_id
 
 
-__version__ = '0.0.10'
+__version__ = '0.0.11'
 __title__ = 'mpxapi'
