@@ -33,6 +33,7 @@ class ApiBase:
     def post(self, data, params=None, feed=False):
         if not params:
             params = {}
+        path = self.path
         if feed:
             path = self.path + '/feed'
         return self.api.command(service=self.service, path=path, method="POST",
