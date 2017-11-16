@@ -15,6 +15,8 @@ class MPXApi:
         self.account = account
         self.tld = tld
         self.token = None
+        self.user_id = None
+        self.user_name = None
         self.registry = None
 
         # Used mainly for notification polling
@@ -25,7 +27,6 @@ class MPXApi:
             self.sign_in()
         else:
             self.token = token
-
         self.get_registry()
 
     def sign_in(self):
@@ -39,6 +40,8 @@ class MPXApi:
         if r.status_code == 200 and "AuthenticationException" not in r.text:
             auth_data = r.json()['signInResponse']
             self.token = auth_data['token']
+            self.user_id = '/'.join(auth_data['userId'].split('/')[-2:])
+            self.user_name = auth_data['userName']
         else:
             raise InvalidCredentialsException('Unable to auth for user: ' + self.username)
 
@@ -86,3 +89,6 @@ class MPXApi:
 
     def get_account(self):
         return self.account
+
+    def get_user_id(self):
+        return self.user_id
