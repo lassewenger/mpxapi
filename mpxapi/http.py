@@ -9,7 +9,7 @@ SIGN_OUT_URL = "https://identity.auth.theplatform.{tld}/idm/web/Authentication/s
 
 
 class MPXApi:
-    def __init__(self, username, password, account, tld):
+    def __init__(self, username, password, account, tld, token=None, clientId=None):
         self.username = username
         self.password = password
         self.account = account
@@ -17,7 +17,15 @@ class MPXApi:
         self.token = None
         self.registry = None
 
-        self.sign_in()
+        # Used mainly for notification polling
+        self.clientId = clientId
+
+        # Allow reuse of cached tokens
+        if token is None:
+            self.sign_in()
+        else:
+            self.token = token
+
         self.get_registry()
 
     def sign_in(self):
@@ -28,7 +36,7 @@ class MPXApi:
         r = requests.get(SIGN_IN_URL.format(tld=self.tld), params=params,
                          headers=headers, auth=auth)
 
-        if r.status_code == 200:
+        if r.status_code == 200 and "AuthenticationException" not in r.text:
             auth_data = r.json()['signInResponse']
             self.token = auth_data['token']
         else:
@@ -45,6 +53,9 @@ class MPXApi:
                   "_accountId": "http://access.auth.theplatform.com/data/Account/" + self.account}
         registry_request = self.raw_command(method="GET", url=REGISTRY_URL.format(tld=self.tld), params=params)
         self.registry = registry_request.json()['resolveDomainResponse']
+
+    def get_token(self):
+        return self.token
 
     def raw_command(self, method, url, params, data=None):
         params.update({"account": self.account})
