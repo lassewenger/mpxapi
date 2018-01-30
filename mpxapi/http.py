@@ -63,7 +63,7 @@ class MPXApi:
     def raw_command(self, method, url, params, data=None):
         params.update({"account": self.account})
         params.update({"token": self.token})
-        params.update({"httpError", "true"})
+        params.update({"httpError": "true"})
         if "form" not in params:
             params.update({"form": "cjson"})
             params.update({"pretty": "true"})
