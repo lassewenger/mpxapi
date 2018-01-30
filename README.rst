@@ -50,6 +50,6 @@ Installation
 
 .. code-block:: bash
 
-    pip install git+https://github.com/blockbuster/mpxapi.git
+    pip install mpxapi
 
 It can also be added to requirements.txt as is.
