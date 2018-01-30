@@ -5,6 +5,10 @@ Simple, low-level handling of the MPX API with built-in authentication functions
 automatically supplies tokens on called commands.
 Also automatically fetches the service registry to use for calling commands.
 
+Notice to updaters
+------------------
+Starting in version 0.1.0, httpError is by default on, which should make status codes usable.
+
 Usage
 -----
 
