@@ -2,3 +2,6 @@ test.sh
 *.pyc
 .idea
 mpxapi.iml
+build
+dist
+mpxapi.egg-info
