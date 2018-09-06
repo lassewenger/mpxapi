@@ -6,5 +6,5 @@ class Rights(ApiBase):
         ApiBase.__init__(self, api)
 
         self.schema = "1.3.7"
-        self.service = "Entitlement Data Service"
+        self.service = "Rights Data Service"
         self.path = "/data/Rights"
