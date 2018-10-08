@@ -15,7 +15,7 @@ setup(
     version=version,
     description="A simple library to interact with Comcast MPX platform",
     url="http://github.com/blockbuster/mpxapi",
-    author="Loke Dupont / Blockbuster",
+    author="Feisal Adur / Blockbuster",
     author_email="fea@tdc.dk",
     license="MIT",
     packages=find_packages(),
