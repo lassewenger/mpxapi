@@ -86,8 +86,6 @@ class MPXApi:
             method="GET", url=REGISTRY_URL.format(tld=self.tld), params=params
         )
         self.registry = registry_request.json()["resolveDomainResponse"]
-        from pprint import pprint
-        pprint(self.registry)
 
     def get_token(self):
         return self.token
