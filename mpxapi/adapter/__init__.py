@@ -1,4 +1,4 @@
-from checksum import Checksum
+from .checksum import Checksum
 
 __all__ = [
     'Checksum'

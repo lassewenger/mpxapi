@@ -7,5 +7,5 @@ class Checksum(ApiBase):
 
         self.schema = "2.15.0"
         self.searchSchema = "1.3.0"
-        self.service = "Checksum Data Service"
+        self.service = "Ingest Data Service"
         self.path = "/data/Checksum"
