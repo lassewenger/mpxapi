@@ -1,5 +1,3 @@
 from .checksum import Checksum
 
-__all__ = [
-    'Checksum'
-]
+__all__ = ["Checksum"]

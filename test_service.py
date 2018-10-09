@@ -3,6 +3,7 @@ import logging
 import time
 from mpxapi import MPXApi
 from mpxapi.entertainment import Program
+from mpxapi.adapter import Checksum
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -27,4 +28,21 @@ req = api.command(
     method="GET",
     params=params,
 )
+
+media = "http://data.media.theplatform.eu/media/data/Media/246212677354"
+
+params = {"schema": "1.2.0", "form": "json", "byMediaId": media}
+req = api.command(
+    service="Ingest Data Service",
+    path="/data/Checksum",
+    method="GET",
+    params=params,
+)
+
 print(req.text)
+
+checksum = Checksum(api=api).get(
+    params={'byMediaId': media}
+)
+
+print(checksum.json())
