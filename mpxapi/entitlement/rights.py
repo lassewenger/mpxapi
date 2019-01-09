@@ -5,6 +5,6 @@ class Rights(ApiBase):
     def __init__(self, api):
         ApiBase.__init__(self, api)
 
-        self.schema = "1.3.9"
-        self.service = "Rights Data Service"
+        self.schema = "1.3.7"
+        self.service = "Entitlement Data Service"
         self.path = "/data/Rights"
