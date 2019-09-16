@@ -1,7 +1,7 @@
 from mpxapi.api_base import ApiBase
 
 
-class UserProfile(ApiBase):
+class UserList(ApiBase):
     def __init__(self, api):
         ApiBase.__init__(self, api)
 
