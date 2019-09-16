@@ -1,2 +1,2 @@
 from .user_profile import UserProfile
-from .user_profile import UserList
+from .user_list import UserList
